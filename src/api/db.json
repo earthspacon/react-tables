@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "fullname": "regt",
+      "username": "erty",
+      "age": 56,
+      "email": "rtfgyhu",
+      "password": "fgbhj",
+      "id": "63f64dfe-1526-4c9d-92d0-55ae6a220ed7"
+    },
+    {
+      "fullname": "ewfrgth",
+      "username": "regthy",
+      "age": "ergthyu",
+      "email": "rthyju",
+      "password": "rthyjui",
+      "id": "52efa1e4-6689-4fb7-a343-3d5a6998d0da"
+    },
+    {
+      "fullname": "sdgtrhyuk",
+      "username": "rtfhyjuki;op",
+      "age": "dfghjklo",
+      "email": "dfghyjui",
+      "password": "dfghjbkl",
+      "id": "c18448ab-5530-427b-978e-5b544418ccd2"
+    },
+    {
+      "fullname": "dsfgrnh",
+      "username": "dfghjkl",
+      "age": "dgfrtyjukilo",
+      "email": "dfbgnhmj,k.l",
+      "password": "fb,hjk.lpdgghjkl;'",
+      "id": "a4ebb264-7ab3-4654-8e95-522852f6dbd6"
+    }
+  ],
+  "books": [
+    {
+      "title": "asfedgrhtjyu",
+      "type": "qwerty",
+      "year": "fsdhuli",
+      "author": "dgfijo",
+      "house": "tfryiuop",
+      "id": "dcee95f3-8903-4e09-9494-dd124a1c18c4"
+    },
+    {
+      "title": "drfthyukilo;p",
+      "type": "erthyukio",
+      "year": "dfhgkjl",
+      "id": "cc90ea3e-b835-4add-be53-2ca2ecf1a6e1"
+    },
+    {
+      "title": "fewi9",
+      "type": "ertyjukilo",
+      "year": "fbgvbnm,.l;",
+      "author": "ertyiuop",
+      "house": "4576890",
+      "id": "8056732f-4fcc-4395-ab9e-b3ba11ba055b"
+    }
+  ]
+}

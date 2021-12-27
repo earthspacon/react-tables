@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, BrowserRouter, Route, Navigate } from 'react-router-dom'
+import { BooksTable } from './components/BooksTable'
+import { UsersTable } from './components/UsersTable'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route exact path='/' element={<UsersTable />} />
+        <Route exact path='/users' element={<UsersTable />} />
+        <Route exact path='/books' element={<BooksTable />} />
+        <Route path='*' element={<Navigate to={'/'} />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
