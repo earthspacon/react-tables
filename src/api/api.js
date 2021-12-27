@@ -20,7 +20,3 @@ export async function editData(table, id, payload) {
 export async function deleteData(table, id) {
   return api.delete(`${table}/${id}`)
 }
-
-export async function deleteAll(table) {
-  return api.delete(`${table}`)
-}
