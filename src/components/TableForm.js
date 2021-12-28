@@ -53,6 +53,7 @@ export const TableForm = ({ column }) => {
       <nav>
         <Link to={'/users'}> Users </Link>
         <Link to={'/books'}> Books </Link>
+        <Link to={'/laptops'}> Laptops </Link>
       </nav>
 
       <Table columns={columns} dataSource={data} />
