@@ -133,5 +133,16 @@
       "keyboard": "ertmu,yi.890-",
       "id": "71824b50-2683-46e7-b65d-6c4c9e07e0dd"
     }
+  ],
+  "products": [
+    {
+      "name": "Laptop",
+      "description": "Мощный ноут",
+      "amount": "25",
+      "price": "1000",
+      "store": "Склад за городом на юге",
+      "categories": "Игровые ноутбуки",
+      "id": "d2693641-7052-49d6-bc30-57b3ca048cf4"
+    }
   ]
 }
