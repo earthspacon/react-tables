@@ -11,7 +11,6 @@ export function useCrud() {
   const [form] = Form.useForm()
 
   let { pathname } = useLocation()
-  if (pathname === '/') pathname = '/users'
 
   const getData = useCallback(() => {
     api

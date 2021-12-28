@@ -8,7 +8,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<UsersTable />} />
+        <Route exact path='/' element={<Navigate to={'/users'} />} />
         <Route exact path='/users' element={<UsersTable />} />
         <Route exact path='/books' element={<BooksTable />} />
         <Route exact path='/laptops' element={<LaptopsTable />} />
