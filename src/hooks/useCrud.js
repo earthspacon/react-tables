@@ -25,18 +25,18 @@ export function useCrud() {
     setVisible(!visible)
   }
 
-  async function handleDelete(id) {
+  const handleDelete = async (id) => {
     await api.deleteData(pathname, id)
     getData()
   }
 
-  function handleEdit(record) {
+  const handleEdit = (record) => {
     form.setFieldsValue(record)
     setRow(record)
     toggleModal()
   }
 
-  function onCancel() {
+  const onCancel = () => {
     getData()
     toggleModal()
     form.resetFields()
