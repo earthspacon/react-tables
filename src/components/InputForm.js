@@ -13,7 +13,7 @@ const validateMessages = {
   },
 }
 /* eslint-enable no-template-curly-in-string */
-const InputForm = ({ form, onFinish, column }) => {
+export const InputForm = ({ form, onFinish, column }) => {
   return (
     <Form
       form={form}
@@ -37,4 +37,3 @@ const InputForm = ({ form, onFinish, column }) => {
     </Form>
   )
 }
-export default InputForm

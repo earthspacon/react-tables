@@ -1,6 +1,6 @@
 import { Popconfirm, Table, Button, Modal } from 'antd'
 import { useEffect } from 'react'
-import InputForm from './InputForm'
+import { InputForm } from './InputForm'
 import { useCrud } from '../hooks/useCrud'
 import { Link } from 'react-router-dom'
 
