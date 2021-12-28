@@ -23,7 +23,7 @@ export const InputForm = ({ form, onFinish, column }) => {
     >
       {column.map((col) => {
         return (
-          <Form.Item name={col.dataIndex} label={col.title}>
+          <Form.Item name={col.dataIndex} label={col.title} key={col.dataIndex}>
             <Input />
           </Form.Item>
         )
