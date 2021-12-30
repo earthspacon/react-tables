@@ -13,7 +13,7 @@ const validateMessages = {
   },
 }
 /* eslint-enable no-template-curly-in-string */
-export const InputForm = ({ form, onFinish, column }) => {
+export const InputForm = ({ form, onFinish, columns }) => {
   return (
     <Form
       form={form}
@@ -21,7 +21,7 @@ export const InputForm = ({ form, onFinish, column }) => {
       onFinish={onFinish}
       validateMessages={validateMessages}
     >
-      {column.map((col) => {
+      {columns.map((col) => {
         return (
           <Form.Item name={col.dataIndex} label={col.title} key={col.dataIndex}>
             <Input />

@@ -8,5 +8,5 @@ export const UsersTable = () => {
     { title: 'Email', dataIndex: 'email', width: 250 },
     { title: 'Password', dataIndex: 'password', width: 250 },
   ]
-  return <TableForm column={column} />
+  return <TableForm url='users' column={column} />
 }

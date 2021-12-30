@@ -9,5 +9,5 @@ export const LaptopsTable = () => {
     { title: 'Display', dataIndex: 'display', width: 250 },
     { title: 'Keyboard', dataIndex: 'keyboard', width: 200 },
   ]
-  return <TableForm column={column} />
+  return <TableForm url='laptops' column={column} />
 }

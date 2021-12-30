@@ -9,5 +9,5 @@ export const ProductsTable = () => {
     { title: 'Categories', dataIndex: 'categories', width: 250 },
     { title: 'Store', dataIndex: 'store', width: 200 },
   ]
-  return <TableForm column={column} />
+  return <TableForm url='products' column={column} />
 }

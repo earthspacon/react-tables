@@ -8,5 +8,5 @@ export const BooksTable = () => {
     { title: 'Author', dataIndex: 'author', width: 250 },
     { title: 'Publishing house', dataIndex: 'house', width: 250 },
   ]
-  return <TableForm column={column} />
+  return <TableForm url='books' column={column} />
 }

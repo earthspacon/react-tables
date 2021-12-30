@@ -2,9 +2,8 @@ import { Popconfirm, Table, Button, Modal } from 'antd'
 import { useEffect } from 'react'
 import { InputForm } from './InputForm'
 import { useCrud } from '../hooks/useCrud'
-import { Link } from 'react-router-dom'
 
-export const TableForm = ({ column }) => {
+export const TableForm = ({ url, column }) => {
   const {
     getData,
     toggleModal,
@@ -15,7 +14,7 @@ export const TableForm = ({ column }) => {
     data,
     form,
     visible,
-  } = useCrud()
+  } = useCrud(url)
 
   useEffect(() => {
     getData()
@@ -50,16 +49,9 @@ export const TableForm = ({ column }) => {
 
   return (
     <>
-      <nav>
-        <Link to={'/users'}> Users </Link>
-        <Link to={'/books'}> Books </Link>
-        <Link to={'/laptops'}> Laptops </Link>
-        <Link to={'/products'}> Products </Link>
-      </nav>
-
       <Table columns={columns} dataSource={data} />
       <Modal visible={visible} onCancel={onCancel} footer={false}>
-        <InputForm onFinish={onFinish} form={form} column={column} />
+        <InputForm onFinish={onFinish} form={form} columns={column} />
       </Modal>
       <div className='plus'>
         <Button type='primary' onClick={toggleModal}>
