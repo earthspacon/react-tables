@@ -1,63 +1,27 @@
-import { Popconfirm, Table, Button, Modal } from 'antd'
-import { useEffect } from 'react'
-import { InputForm } from './InputForm'
-import { useCrud } from '../hooks/useCrud'
+import { Table } from 'antd'
+import { dataAPI } from '../api/DataService'
+import { CrudActions } from './CrudActions'
 
-export const TableForm = ({ url, column }) => {
-  const {
-    getData,
-    toggleModal,
-    handleDelete,
-    handleEdit,
-    onCancel,
-    onFinish,
-    data,
-    form,
-    visible,
-  } = useCrud(url)
+export const TableForm = ({ url, columns }) => {
+  const { data, error } = dataAPI.useGetDataQuery({ url })
 
-  useEffect(() => {
-    getData()
-  }, [getData])
-
-  const columns = [
-    ...column,
+  const tableColumns = [
+    ...columns,
     {
-      render: (record) => {
-        return data.length >= 1 ? (
-          <>
-            <Button
-              onClick={() => {
-                handleEdit(record)
-              }}
-            >
-              Edit
-            </Button>
-            <Popconfirm
-              title='Sure to delete?'
-              onConfirm={() => {
-                handleDelete(record.id)
-              }}
-            >
-              <Button>Delete</Button>
-            </Popconfirm>
-          </>
-        ) : null
-      },
+      render: (record) =>
+        data && <CrudActions payload={record} url={url} columns={columns} />,
     },
   ]
 
   return (
     <>
-      <Table columns={columns} dataSource={data} />
-      <Modal visible={visible} onCancel={onCancel} footer={false}>
-        <InputForm onFinish={onFinish} form={form} columns={column} />
-      </Modal>
-      <div className='plus'>
-        <Button type='primary' onClick={toggleModal}>
-          +
-        </Button>
-      </div>
+      {error && <h1>Error in fetching data: {error.message}</h1>}
+      {data && (
+        <Table
+          columns={tableColumns}
+          dataSource={data.map((item) => ({ ...item, key: item.id }))}
+        />
+      )}
     </>
   )
 }

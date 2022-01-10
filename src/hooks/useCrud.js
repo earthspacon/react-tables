@@ -1,60 +1,45 @@
 import { Form } from 'antd'
-import { useState, useCallback } from 'react'
-import * as api from '../api/api'
+import { useState } from 'react'
+import { dataAPI } from '../api/DataService'
 
 export function useCrud(url) {
-  const [data, setData] = useState([])
   const [visible, setVisible] = useState(false)
   const [row, setRow] = useState(null)
   const [form] = Form.useForm()
 
-  const getData = useCallback(() => {
-    api
-      .getData(url)
-      .then((res) =>
-        setData(res.data.map((item) => ({ ...item, key: item.id })))
-      )
-  }, [url])
+  const [addData] = dataAPI.useAddDataMutation()
+  const [editData] = dataAPI.useEditDataMutation()
+  const [deleteData] = dataAPI.useDeleteDataMutation()
 
-  const toggleModal = () => {
-    setVisible(!visible)
-  }
+  const toggleModal = () => setVisible(!visible)
 
-  const handleDelete = async (id) => {
-    await api.deleteData(url, id)
-    getData()
-  }
+  const handleDelete = async (id) => await deleteData({ url, id })
 
-  const handleEdit = (record) => {
-    form.setFieldsValue(record)
-    setRow(record)
+  const handleEditButton = (payload) => {
+    form.setFieldsValue(payload)
+    setRow(payload)
     toggleModal()
   }
 
   const onCancel = () => {
-    getData()
     toggleModal()
     form.resetFields()
     setRow(null)
   }
 
-  const onFinish = async (values) => {
-    if (!row) {
-      await api.addData(url, { ...values, id: Date.now() })
-    } else {
-      await api.editData(url, row.id, values)
-    }
+  const onFinish = async (payload) => {
+    !row
+      ? await addData({ url, payload })
+      : await editData({ url, id: row.id, payload })
     onCancel()
   }
 
   return {
-    getData,
-    toggleModal,
+    handleEditButton,
     handleDelete,
-    handleEdit,
+    toggleModal,
     onCancel,
     onFinish,
-    data,
     form,
     visible,
   }

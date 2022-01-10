@@ -4,3 +4,20 @@ nav {
   margin-bottom: 20px;
   font-size: 20px;
 }
+
+.posts {
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+}
+
+.posts h2 {
+  text-transform: capitalize;
+}
+
+#post-button {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+}
