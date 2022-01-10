@@ -1,7 +1,7 @@
-import { Button } from 'antd'
 import { useState } from 'react'
 import { dataAPI } from '../api/DataService'
 import { CrudActions } from './CrudActions'
+import { Pagination } from './Pagination'
 
 export const PostsForm = ({ url, columns }) => {
   const [page, setPage] = useState(1)
@@ -21,24 +21,10 @@ export const PostsForm = ({ url, columns }) => {
         <div className='posts' key={post.id}>
           <h2>{post.title}</h2>
           <p>{post.body}</p>
-          <CrudActions payload={post} url='posts' columns={columns} />
+          <CrudActions payload={post} url={url} columns={columns} />
         </div>
       ))}
-
-      {totalPages && (
-        <div className='pagination'>
-          <Button onClick={() => setPage((p) => p - 1)} disabled={page === 1}>
-            Prev
-          </Button>
-          <Button
-            onClick={() => setPage((p) => p + 1)}
-            disabled={page === totalPages}
-          >
-            Next
-          </Button>
-          {page} / {totalPages}
-        </div>
-      )}
+      <Pagination page={page} totalPages={totalPages} setPage={setPage} />
     </>
   )
 }
