@@ -1,14 +1,12 @@
-nav {
+.nav {
   text-align: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin: 20px;
   font-size: 20px;
 }
 
 .posts {
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   margin-bottom: 30px;
 }
 
@@ -20,4 +18,20 @@ nav {
   position: fixed;
   top: 30px;
   right: 30px;
+}
+
+.search {
+  max-width: 500px;
+  margin: 20px;
+}
+
+.no-posts {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.pages {
+  font-size: large;
+  margin-left: 10px;
 }

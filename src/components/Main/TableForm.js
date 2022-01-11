@@ -1,6 +1,6 @@
 import { Table } from 'antd'
-import { dataAPI } from '../api/DataService'
-import { CrudActions } from './CrudActions'
+import { dataAPI } from '../../services/DataService'
+import { CrudActions } from '../CrudActions'
 
 export const TableForm = ({ url, columns }) => {
   const { data, error } = dataAPI.useGetDataQuery({ url })

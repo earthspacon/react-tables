@@ -1,6 +1,6 @@
 import { Form } from 'antd'
 import { useState } from 'react'
-import { dataAPI } from '../api/DataService'
+import { dataAPI } from '../services/DataService'
 
 export function useCrud(url) {
   const [visible, setVisible] = useState(false)

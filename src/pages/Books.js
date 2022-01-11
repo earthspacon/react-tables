@@ -1,4 +1,4 @@
-import { TableForm } from '../components/TableForm'
+import { TableForm } from '../components/Main/TableForm'
 
 export const Books = () => {
   const columns = [

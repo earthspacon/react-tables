@@ -14,13 +14,10 @@ export const dataAPI = createApi({
         url: `${url}`,
         params: { _limit, _page },
       }),
-      transformResponse: (posts, meta) => {
-        console.log(meta)
-        return {
-          posts,
-          totalCount: Number(meta.response.headers.get('X-Total-Count')),
-        }
-      },
+      transformResponse: (posts, meta) => ({
+        posts,
+        totalCount: Number(meta.response.headers.get('X-Total-Count')),
+      }),
       providesTags: (result) => ['posts'],
     }),
     addData: build.mutation({

@@ -1,4 +1,4 @@
-import { PostsForm } from '../components/PostsForm'
+import { PostsForm } from '../components/Main/PostsForm'
 
 export const Posts = () => {
   const columns = [
