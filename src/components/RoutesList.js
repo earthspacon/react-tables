@@ -3,7 +3,7 @@ import { routes } from '../routes/routes'
 
 export const RoutesList = () => (
   <Routes>
-    <Route exact path='/' element={<Navigate to={'/users'} />} />
+    <Route exact path='/' element={<Navigate to={'/posts'} />} />
     {routes.map((route) => (
       <Route
         exact

@@ -4,6 +4,7 @@ import { dataAPI } from '../../services/DataService'
 import { CrudActions } from '../CrudActions'
 import { Pagination } from '../Pagination'
 import { FilterForm } from '../FilterForm'
+import { AddButtom } from '../AddButton'
 
 export const PostsForm = ({ url, columns }) => {
   const [page, setPage] = useState(1)
@@ -13,6 +14,7 @@ export const PostsForm = ({ url, columns }) => {
     _limit: limit,
     _page: page,
   })
+  console.log(data?.posts)
   const posts = data?.posts
   const totalPages = Math.ceil(data?.totalCount / limit)
   const {
@@ -31,15 +33,19 @@ export const PostsForm = ({ url, columns }) => {
   return (
     <>
       {error && <h1>Error in fetching data: {error?.message}</h1>}
-      <FilterForm
-        value={selectedSort}
-        options={options}
-        onChange={sortPosts}
-        searchQuery={searchQuery}
-        setSearchQuery={setSearchQuery}
-        limit={limit}
-        setLimit={setLimit}
-      />
+      <>
+        <AddButtom url={url} columns={columns} />
+        <FilterForm
+          value={selectedSort}
+          options={options}
+          onChange={sortPosts}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+          limit={limit}
+          setLimit={setLimit}
+        />
+      </>
+
       {isLoading ? (
         <p className='no-posts'>Loading...</p>
       ) : filteredPosts?.length ? (

@@ -1,17 +1,13 @@
 import { Button, Modal, Popconfirm } from 'antd'
+import { useContext } from 'react'
 import { useCrud } from '../hooks/useCrud'
 import { InputForm } from './InputForm'
+import { Context } from './ModalContext'
 
 export const CrudActions = ({ payload, url, columns }) => {
-  const {
-    handleEditButton,
-    handleDelete,
-    onCancel,
-    onFinish,
-    toggleModal,
-    form,
-    visible,
-  } = useCrud(url)
+  const { handleEditButton, handleDelete, onCancel, onFinish, form } =
+    useCrud(url)
+  const { visible } = useContext(Context)
 
   return (
     <>
@@ -25,9 +21,7 @@ export const CrudActions = ({ payload, url, columns }) => {
       >
         <Button>Delete</Button>
       </Popconfirm>
-      <Button id='post-button' type='primary' onClick={toggleModal}>
-        +
-      </Button>
+      
     </>
   )
 }
