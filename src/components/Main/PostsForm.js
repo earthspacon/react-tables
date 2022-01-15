@@ -1,21 +1,18 @@
 import { useState } from 'react'
-import { usePosts } from '../../hooks/Posts/usePosts'
+import { usePosts } from '../../hooks/usePosts'
 import { dataAPI } from '../../services/DataService'
 import { Pagination } from '../Posts/Pagination'
 import { FilterForm } from '../Posts/FilterForm'
-import { OpenModal } from '../OpenModal'
 import { PostsList } from '../Posts/PostsList'
-import { useTotalPages } from '../../hooks/Posts/useTotalPages'
-import { usePageParams } from '../../hooks/Context/usePageParams'
+import { useTotalPages } from '../../hooks/useTotalPages'
 
-export const PostsForm = () => {
+export const PostsForm = ({ params }) => {
   const [_page, setPage] = useState(1)
   const [filter, setFilter] = useState({ sort: '', search: '' })
 
-  const { url } = usePageParams()
   const _limit = 10
   const { data, error, isLoading } = dataAPI.useGetPostsQuery({
-    url,
+    url: params.url,
     _limit,
     _page,
   })
@@ -26,13 +23,12 @@ export const PostsForm = () => {
     <p className='no-posts'>{error?.error}</p>
   ) : (
     <>
-      <OpenModal />
       <FilterForm filter={filter} setFilter={setFilter} />
       {isLoading ? (
         <p className='no-posts'>Loading...</p>
       ) : (
         <div>
-          <PostsList filteredPosts={filteredPosts} />
+          <PostsList filteredPosts={filteredPosts} params={params} />
           <Pagination page={_page} totalPages={totalPages} setPage={setPage} />
         </div>
       )}

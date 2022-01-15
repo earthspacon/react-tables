@@ -1,13 +1,11 @@
 import { Form, Input, Button } from 'antd'
-import { usePageParams } from '../hooks/Context/usePageParams'
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 },
 }
 
-export const InputForm = ({ onFinish }) => {
-  const { columns, form } = usePageParams()
+export const InputForm = ({ onFinish, form, columns }) => {
 
   return (
     <Form form={form} {...layout} onFinish={onFinish}>
