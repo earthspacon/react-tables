@@ -1,27 +1,20 @@
-import { Button, Modal, Popconfirm } from 'antd'
-import { useContext } from 'react'
+import { Button, Popconfirm } from 'antd'
 import { useCrud } from '../hooks/useCrud'
-import { InputForm } from './InputForm'
-import { Context } from './ModalContext'
+import { ModalInput } from './ModalInput'
 
-export const CrudActions = ({ payload, url, columns }) => {
-  const { handleEditButton, handleDelete, onCancel, onFinish, form } =
-    useCrud(url)
-  const { visible } = useContext(Context)
+export const CrudActions = ({ payload }) => {
+  const { handleEditButton, handleDelete } = useCrud()
 
   return (
-    <>
+    <div>
       <Button onClick={() => handleEditButton(payload)}>Edit</Button>
-      <Modal visible={visible} onCancel={onCancel} footer={false}>
-        <InputForm onFinish={onFinish} form={form} columns={columns} />
-      </Modal>
+      <ModalInput />
       <Popconfirm
         title='Sure to delete?'
         onConfirm={() => handleDelete(payload.id)}
       >
         <Button>Delete</Button>
       </Popconfirm>
-      
-    </>
+    </div>
   )
 }

@@ -1,20 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
-const baseUrl = 'https://earthspacon.free.mockoapp.net'
-
 export const dataAPI = createApi({
   reducerPath: 'dataAPI',
-  baseQuery: fetchBaseQuery({
-    baseUrl,
-    // prepareHeaders: (headers) => {
-    //   headers.set('X-API-Key', 'd414cd40')
-    //   return headers
-    // },
-  }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
   tagTypes: ['data', 'posts'],
   endpoints: (build) => ({
     getData: build.query({
-      query: ({ url }) => `${url}`,
+      query: (url) => `${url}`,
       providesTags: (result) => ['data'],
     }),
     getPosts: build.query({

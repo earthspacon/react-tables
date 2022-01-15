@@ -1,10 +1,13 @@
 import { BrowserRouter } from 'react-router-dom'
-import { NavBar } from './components/NavBar'
-import { RoutesList } from './components/RoutesList'
+import { NavBar } from './components/Routing/NavBar'
+import { RoutesList } from './components/Routing/RoutesList'
+import { ContextProvider } from './Context/ContextProvider'
 
 export const App = () => (
   <BrowserRouter>
     <NavBar />
-    <RoutesList />
+    <ContextProvider>
+      <RoutesList />
+    </ContextProvider>
   </BrowserRouter>
 )

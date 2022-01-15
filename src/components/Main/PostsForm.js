@@ -1,69 +1,40 @@
 import { useState } from 'react'
-import { useFilter } from '../../hooks/useFilter'
+import { usePosts } from '../../hooks/Posts/usePosts'
 import { dataAPI } from '../../services/DataService'
-import { CrudActions } from '../CrudActions'
-import { Pagination } from '../Pagination'
-import { FilterForm } from '../FilterForm'
-import { AddButtom } from '../AddButton'
+import { Pagination } from '../Posts/Pagination'
+import { FilterForm } from '../Posts/FilterForm'
+import { OpenModal } from '../OpenModal'
+import { PostsList } from '../Posts/PostsList'
+import { useTotalPages } from '../../hooks/Posts/useTotalPages'
+import { usePageParams } from '../../hooks/Context/usePageParams'
 
-export const PostsForm = ({ url, columns }) => {
-  const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(10)
+export const PostsForm = () => {
+  const [_page, setPage] = useState(1)
+  const [filter, setFilter] = useState({ sort: '', search: '' })
+
+  const { url } = usePageParams()
+  const _limit = 10
   const { data, error, isLoading } = dataAPI.useGetPostsQuery({
     url,
-    _limit: limit,
-    _page: page,
+    _limit,
+    _page,
   })
-  console.log(data?.posts)
-  const posts = data?.posts
-  const totalPages = Math.ceil(data?.totalCount / limit)
-  const {
-    filteredPosts,
-    selectedSort,
-    searchQuery,
-    options,
-    sortPosts,
-    setSearchQuery,
-  } = useFilter(posts)
+  const totalPages = useTotalPages(data, _limit)
+  const filteredPosts = usePosts(data, filter)
 
-  const pagination = (
-    <Pagination page={page} totalPages={totalPages} setPage={setPage} />
-  )
-
-  return (
+  return error ? (
+    <p className='no-posts'>{error?.error}</p>
+  ) : (
     <>
-      {error && <h1>Error in fetching data: {error?.message}</h1>}
-      <>
-        <AddButtom url={url} columns={columns} />
-        <FilterForm
-          value={selectedSort}
-          options={options}
-          onChange={sortPosts}
-          searchQuery={searchQuery}
-          setSearchQuery={setSearchQuery}
-          limit={limit}
-          setLimit={setLimit}
-        />
-      </>
-
+      <OpenModal />
+      <FilterForm filter={filter} setFilter={setFilter} />
       {isLoading ? (
         <p className='no-posts'>Loading...</p>
-      ) : filteredPosts?.length ? (
-        <div>
-          {filteredPosts.map((post) => (
-            <div className='posts' key={post.id}>
-              <h2>{post.title}</h2>
-              <p>{post.body}</p>
-              <CrudActions payload={post} url={url} columns={columns} />
-            </div>
-          ))}
-          {pagination}
-        </div>
       ) : (
-        <>
-          <p className='no-posts'>NO POSTS!</p>
-          {pagination}
-        </>
+        <div>
+          <PostsList filteredPosts={filteredPosts} />
+          <Pagination page={_page} totalPages={totalPages} setPage={setPage} />
+        </div>
       )}
     </>
   )

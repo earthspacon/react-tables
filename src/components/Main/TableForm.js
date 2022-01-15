@@ -1,30 +1,31 @@
 import { Table } from 'antd'
+import { usePageParams } from '../../hooks/Context/usePageParams'
 import { dataAPI } from '../../services/DataService'
-import { AddButtom } from '../AddButton'
 import { CrudActions } from '../CrudActions'
+import { OpenModal } from '../OpenModal'
 
-export const TableForm = ({ url, columns }) => {
-  const { data, error } = dataAPI.useGetDataQuery({ url })
+export const TableForm = () => {
+  const { url, columns } = usePageParams()
+  const { data, error, isLoading } = dataAPI.useGetDataQuery(url)
 
   const tableColumns = [
     ...columns,
     {
-      render: (record) =>
-        data && <CrudActions payload={record} url={url} columns={columns} />,
+      render: (record) => data?.length && <CrudActions payload={record} />,
     },
   ]
-  console.log(data)
 
-  return (
+  return error ? (
+    <p className='no-posts'>{error?.error}</p>
+  ) : isLoading ? (
+    <p className='no-posts'>Loading...</p>
+  ) : (
     <>
-      {error && <h1>Error in fetching data: {error.message}</h1>}
-      <AddButtom url={url} columns={columns} />
-      {data && (
       <Table
         columns={tableColumns}
-          dataSource={data.map((item) => ({ ...item, key: item.id }))}
-        />
-      )}
+        dataSource={data?.map((item) => ({ ...item, key: item.id }))}
+      />
+      <OpenModal />
     </>
   )
 }

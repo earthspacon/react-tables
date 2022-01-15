@@ -1,30 +1,28 @@
-import { Form } from 'antd'
 import { useState } from 'react'
 import { dataAPI } from '../services/DataService'
+import { useModal } from './Context/useModal'
+import { usePageParams } from './Context/usePageParams'
 
-export function useCrud(url) {
-  const [visible, setVisible] = useState(false)
+export function useCrud() {
   const [row, setRow] = useState(null)
-  const [form] = Form.useForm()
-
   const [addData] = dataAPI.useAddDataMutation()
   const [editData] = dataAPI.useEditDataMutation()
   const [deleteData] = dataAPI.useDeleteDataMutation()
-
-  const toggleModal = () => setVisible(!visible)
+  const { toggleModal } = useModal()
+  const { url, form } = usePageParams()
 
   const handleDelete = async (id) => await deleteData({ url, id })
 
   const handleEditButton = (payload) => {
-    form.setFieldsValue(payload)
-    setRow(payload)
     toggleModal()
+    setRow(payload)
+    form.setFieldsValue(payload)
   }
+  console.log(row)
 
   const onCancel = () => {
     toggleModal()
     form.resetFields()
-    setRow(null)
   }
 
   const onFinish = async (payload) => {
@@ -37,10 +35,7 @@ export function useCrud(url) {
   return {
     handleEditButton,
     handleDelete,
-    toggleModal,
     onCancel,
     onFinish,
-    form,
-    visible,
   }
 }
