@@ -20,8 +20,8 @@ export const TableForm = ({ url, columns }) => {
       {error && <h1>Error in fetching data: {error.message}</h1>}
       <AddButtom url={url} columns={columns} />
       {data && (
-        <Table
-          columns={tableColumns}
+      <Table
+        columns={tableColumns}
           dataSource={data.map((item) => ({ ...item, key: item.id }))}
         />
       )}
