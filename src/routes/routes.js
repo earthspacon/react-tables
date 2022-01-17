@@ -13,6 +13,5 @@ export const routes = [
 ]
 
 export const nav = routes.map(({ path }) => ({
-  path,
   element: path.slice(1, path.length).toUpperCase(),
 }))
