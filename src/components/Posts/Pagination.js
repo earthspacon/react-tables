@@ -4,12 +4,10 @@ import { useMemo } from 'react'
 export const Pagination = ({ page, totalPages, setPage }) => {
   const pagesArray = useMemo(() => {
     let start = Math.floor((page - 1) / 5) * 5
-    const pages = new Array(5).fill().map((_, idx) => start + idx + 1)
-    let endPages
-    while (pages <= totalPages) {
-      endPages = pages
-    }
-    return endPages
+    return new Array(5)
+      .fill()
+      .map((_, idx) => start + idx + 1)
+      .filter((i) => i <= totalPages)
   }, [page, totalPages])
 
   const handlePrevious = () => setPage((p) => p - 1)
@@ -33,7 +31,6 @@ export const Pagination = ({ page, totalPages, setPage }) => {
           {page} / {totalPages}
         </span>
       </div>
-      )}
-    </>
+    )
   )
 }
