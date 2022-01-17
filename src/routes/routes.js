@@ -11,3 +11,8 @@ export const routes = [
   { path: '/products', element: Products },
   { path: '/posts', element: Posts },
 ]
+
+export const nav = routes.map(({ path, element }) => ({
+  path,
+  element: element.name,
+}))

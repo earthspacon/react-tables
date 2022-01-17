@@ -6,7 +6,7 @@ export const NavBar = () => (
     {routes.map(({ path, element }) => (
       <Link key={path} to={path}>
         <span>
-          {element.name} {''}
+          {element.name.toString()} {''}
         </span>
       </Link>
     ))}
