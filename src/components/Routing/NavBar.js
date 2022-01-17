@@ -3,8 +3,8 @@ import { nav } from '../../routes/routes'
 
 export const NavBar = () => (
   <nav className='nav'>
-    {nav.map(({ path, element }) => (
-      <Link key={path} to={path}>
+    {nav.map(({ element }) => (
+      <Link key={element} to={element}>
         {element} {''}
       </Link>
     ))}
