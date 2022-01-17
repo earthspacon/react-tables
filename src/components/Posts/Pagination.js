@@ -19,7 +19,7 @@ export const Pagination = ({ page, totalPages, setPage }) => {
         <Button onClick={handlePrevious} disabled={page === 1}>
           Prev
         </Button>
-        {pagesArray.map((pageNum) => (
+        {pagesArray?.map((pageNum) => (
           <Button key={pageNum} onClick={() => setPage(pageNum)}>
             {pageNum}
           </Button>
