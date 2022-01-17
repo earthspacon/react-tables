@@ -12,7 +12,7 @@ export const routes = [
   { path: '/posts', element: Posts },
 ]
 
-export const nav = routes.map(({ path, element }) => ({
+export const nav = routes.map(({ path }) => ({
   path,
-  element: element.name,
+  element: path.slice(1, path.length).toUpperCase(),
 }))
