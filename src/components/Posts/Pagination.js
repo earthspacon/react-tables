@@ -16,24 +16,23 @@ export const Pagination = ({ page, totalPages, setPage }) => {
   const handleNext = () => setPage((p) => p + 1)
 
   return (
-    <>
-      {totalPages && (
-        <div className='posts'>
-          <Button onClick={handlePrevious} disabled={page === 1}>
-            Prev
+    totalPages && (
+      <div className='posts'>
+        <Button onClick={handlePrevious} disabled={page === 1}>
+          Prev
+        </Button>
+        {pagesArray.map((pageNum) => (
+          <Button key={pageNum} onClick={() => setPage(pageNum)}>
+            {pageNum}
           </Button>
-          {pagesArray.map((pageNum) => (
-            <Button key={pageNum} onClick={() => setPage(pageNum)}>
-              {pageNum}
-            </Button>
-          ))}
-          <Button onClick={handleNext} disabled={page === totalPages}>
-            Next
-          </Button>
-          <span className='pages'>
-            {page} / {totalPages}
-          </span>
-        </div>
+        ))}
+        <Button onClick={handleNext} disabled={page === totalPages}>
+          Next
+        </Button>
+        <span className='pages'>
+          {page} / {totalPages}
+        </span>
+      </div>
       )}
     </>
   )
