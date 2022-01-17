@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react'
 
+const baseUrl = 'https://tables-posts-server.herokuapp.com'
+
 export const dataAPI = createApi({
   reducerPath: 'dataAPI',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000' }),
+  baseQuery: fetchBaseQuery({ baseUrl }),
   tagTypes: ['data', 'posts'],
   endpoints: (build) => ({
     getData: build.query({
